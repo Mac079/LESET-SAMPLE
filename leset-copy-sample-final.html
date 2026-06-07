@@ -1,0 +1,1165 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>LESET Copy Sample by The Silk Pen</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400&family=Jost:wght@300;400;500&display=swap" rel="stylesheet">
+
+<style>
+  :root {
+    --cream: #F5F0E8;
+    --warm-white: #FAF8F4;
+    --ink: #1C1A17;
+    --stone: #8A8278;
+    --blush: #D4B89A;
+    --terracotta: #B5704A;
+    --sage: #7A8C6E;
+    --gold: #C9A96E;
+  }
+
+  *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+  html { scroll-behavior: smooth; }
+
+  a, button, input, p, h1, h2, h3, h4, span, div {
+    min-width: 0;
+  }
+
+  body {
+    background: var(--warm-white);
+    color: var(--ink);
+    font-family: 'Jost', sans-serif;
+    font-weight: 300;
+    letter-spacing: 0.02em;
+    overflow-x: hidden;
+  }
+
+  /* ── LABEL BAR ── */
+  .label-bar {
+    background: var(--ink);
+    color: var(--cream);
+    text-align: center;
+    padding: 10px 24px;
+    font-family: 'Jost', sans-serif;
+    font-size: 10px;
+    font-weight: 500;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+  }
+
+  /* ── NAV ── */
+  nav {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 24px 48px;
+    border-bottom: 1px solid rgba(28,26,23,0.1);
+    position: sticky;
+    top: 0;
+    background: var(--warm-white);
+    z-index: 100;
+  }
+
+  .nav-logo {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 22px;
+    font-weight: 400;
+    letter-spacing: 0.3em;
+    text-transform: uppercase;
+    color: var(--ink);
+    text-decoration: none;
+  }
+
+  .nav-links {
+    display: flex;
+    gap: 36px;
+    list-style: none;
+  }
+
+  .nav-links a {
+    font-size: 11px;
+    font-weight: 400;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--ink);
+    text-decoration: none;
+    opacity: 0.7;
+    transition: opacity 0.2s;
+  }
+
+  .nav-links a:hover { opacity: 1; }
+
+  .nav-actions {
+    display: flex;
+    gap: 20px;
+    align-items: center;
+  }
+
+  .nav-action {
+    font-size: 11px;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--ink);
+    text-decoration: none;
+    opacity: 0.6;
+    white-space: nowrap;
+  }
+
+  /* ── HERO ── */
+  .hero {
+    min-height: 92vh;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .hero-image-side {
+    background: #D9CFC2;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .hero-image-placeholder {
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(160deg, #C8BFB0 0%, #A89880 60%, #8A7A68 100%);
+    display: flex;
+    align-items: flex-end;
+    padding: 48px;
+  }
+
+  .hero-image-caption {
+    font-size: 10px;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    color: rgba(255,255,255,0.6);
+  }
+
+  .hero-content {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: 80px 72px 80px 80px;
+    position: relative;
+  }
+
+  .hero-eyebrow {
+    font-size: 10px;
+    font-weight: 500;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    color: var(--stone);
+    margin-bottom: 32px;
+    animation: fadeUp 0.8s ease forwards;
+    opacity: 0;
+    animation-delay: 0.1s;
+  }
+
+  .hero-headline {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(48px, 5vw, 72px);
+    font-weight: 300;
+    line-height: 1.08;
+    letter-spacing: -0.01em;
+    color: var(--ink);
+    margin-bottom: 32px;
+    animation: fadeUp 0.8s ease forwards;
+    opacity: 0;
+    animation-delay: 0.25s;
+  }
+
+  .hero-headline em {
+    font-style: italic;
+    color: var(--terracotta);
+  }
+
+  .hero-body {
+    font-size: 15px;
+    line-height: 1.85;
+    color: var(--stone);
+    max-width: 400px;
+    margin-bottom: 48px;
+    animation: fadeUp 0.8s ease forwards;
+    opacity: 0;
+    animation-delay: 0.4s;
+  }
+
+  .hero-actions {
+    display: flex;
+    gap: 20px;
+    align-items: center;
+    animation: fadeUp 0.8s ease forwards;
+    opacity: 0;
+    animation-delay: 0.55s;
+  }
+
+  .btn-primary {
+    background: var(--ink);
+    color: var(--cream);
+    padding: 14px 36px;
+    font-family: 'Jost', sans-serif;
+    font-size: 10px;
+    font-weight: 500;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    border: none;
+    cursor: pointer;
+    text-decoration: none;
+    display: inline-block;
+    transition: background 0.25s, color 0.25s;
+  }
+
+  .btn-primary:hover {
+    background: var(--terracotta);
+  }
+
+  .btn-ghost {
+    font-size: 10px;
+    font-weight: 500;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--ink);
+    text-decoration: none;
+    border-bottom: 1px solid var(--ink);
+    padding-bottom: 2px;
+    transition: color 0.2s, border-color 0.2s;
+  }
+
+  .btn-ghost:hover {
+    color: var(--stone);
+    border-color: var(--stone);
+  }
+
+  .hero-ornament {
+    position: absolute;
+    top: 48px;
+    right: 48px;
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 11px;
+    font-weight: 300;
+    font-style: italic;
+    color: var(--blush);
+    letter-spacing: 0.08em;
+    writing-mode: vertical-rl;
+  }
+
+  /* ── BRAND STATEMENT ── */
+  .brand-statement {
+    padding: 120px 80px;
+    display: grid;
+    grid-template-columns: 1fr 2fr;
+    gap: 80px;
+    align-items: start;
+    border-top: 1px solid rgba(28,26,23,0.08);
+  }
+
+  .brand-statement-label {
+    font-size: 10px;
+    font-weight: 500;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    color: var(--stone);
+    padding-top: 8px;
+  }
+
+  .brand-statement-text {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(28px, 3vw, 42px);
+    font-weight: 300;
+    line-height: 1.4;
+    color: var(--ink);
+  }
+
+  .brand-statement-text em {
+    font-style: italic;
+    color: var(--terracotta);
+  }
+
+  .brand-statement-sub {
+    font-size: 14px;
+    line-height: 1.9;
+    color: var(--stone);
+    margin-top: 32px;
+    max-width: 560px;
+  }
+
+  /* ── PHILOSOPHY STRIP ── */
+  .philosophy-strip {
+    background: var(--ink);
+    color: var(--cream);
+    padding: 64px 80px;
+    display: flex;
+    gap: 80px;
+    align-items: flex-start;
+  }
+
+  .philosophy-item {
+    flex: 1;
+  }
+
+  .philosophy-number {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 48px;
+    font-weight: 300;
+    font-style: italic;
+    color: var(--gold);
+    line-height: 1;
+    margin-bottom: 16px;
+  }
+
+  .philosophy-headline {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 22px;
+    font-weight: 400;
+    margin-bottom: 12px;
+    letter-spacing: 0.02em;
+  }
+
+  .philosophy-body {
+    font-size: 13px;
+    line-height: 1.85;
+    color: rgba(245,240,232,0.6);
+  }
+
+  .philosophy-divider {
+    width: 1px;
+    background: rgba(245,240,232,0.15);
+    align-self: stretch;
+  }
+
+  /* ── COLLECTION INTRO ── */
+  .collection-intro {
+    padding: 120px 80px 80px;
+    text-align: center;
+  }
+
+  .collection-intro-eyebrow {
+    font-size: 10px;
+    font-weight: 500;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    color: var(--stone);
+    margin-bottom: 24px;
+  }
+
+  .collection-intro-headline {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(36px, 4vw, 58px);
+    font-weight: 300;
+    line-height: 1.15;
+    color: var(--ink);
+    max-width: 700px;
+    margin: 0 auto 24px;
+  }
+
+  .collection-intro-headline em {
+    font-style: italic;
+    color: var(--terracotta);
+  }
+
+  .collection-intro-body {
+    font-size: 14px;
+    line-height: 1.9;
+    color: var(--stone);
+    max-width: 520px;
+    margin: 0 auto 48px;
+  }
+
+  /* ── GRID ── */
+  .collection-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 2px;
+    margin: 0 80px;
+  }
+
+  .grid-item {
+    aspect-ratio: 3/4;
+    position: relative;
+    overflow: hidden;
+    cursor: pointer;
+  }
+
+  .grid-item-bg {
+    width: 100%;
+    height: 100%;
+    transition: transform 0.6s ease;
+  }
+
+  .grid-item:hover .grid-item-bg {
+    transform: scale(1.04);
+  }
+
+  .grid-item-bg-1 { background: linear-gradient(180deg, #C4B8A8 0%, #8E7F6E 100%); }
+  .grid-item-bg-2 { background: linear-gradient(180deg, #B8C4B0 0%, #7A8C6E 100%); }
+  .grid-item-bg-3 { background: linear-gradient(180deg, #C4A898 0%, #B5704A 100%); }
+
+  .grid-item-label {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    padding: 32px 24px 24px;
+    background: linear-gradient(transparent, rgba(28,26,23,0.6));
+    color: white;
+  }
+
+  .grid-item-name {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 22px;
+    font-weight: 300;
+    font-style: italic;
+    margin-bottom: 4px;
+  }
+
+  .grid-item-sub {
+    font-size: 10px;
+    font-weight: 400;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    opacity: 0.7;
+  }
+
+  /* ── EMAIL CAPTURE ── */
+  .email-capture {
+    padding: 100px 80px;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 80px;
+    align-items: center;
+    background: var(--cream);
+    margin-top: 2px;
+  }
+
+  .email-capture-text h2 {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(32px, 3.5vw, 52px);
+    font-weight: 300;
+    line-height: 1.2;
+    color: var(--ink);
+    margin-bottom: 20px;
+  }
+
+  .email-capture-text h2 em {
+    font-style: italic;
+    color: var(--terracotta);
+  }
+
+  .email-capture-text p {
+    font-size: 14px;
+    line-height: 1.85;
+    color: var(--stone);
+    max-width: 380px;
+  }
+
+  .email-form {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+  }
+
+  .email-form input {
+    border: none;
+    border-bottom: 1px solid rgba(28,26,23,0.3);
+    background: transparent;
+    padding: 14px 0;
+    font-family: 'Jost', sans-serif;
+    font-size: 13px;
+    font-weight: 300;
+    letter-spacing: 0.06em;
+    color: var(--ink);
+    outline: none;
+    transition: border-color 0.2s;
+  }
+
+  .email-form input::placeholder { color: var(--stone); }
+  .email-form input:focus { border-color: var(--ink); }
+
+  .email-form-note {
+    font-size: 11px;
+    color: var(--stone);
+    letter-spacing: 0.04em;
+    line-height: 1.6;
+  }
+
+  /* ── ANNOTATION SIDEBAR ── */
+  .annotation-wrapper {
+    position: relative;
+  }
+
+  .annotation {
+    position: absolute;
+    right: -260px;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 220px;
+    background: #FFF8E8;
+    border-left: 3px solid var(--gold);
+    padding: 16px 18px;
+    font-size: 11px;
+    line-height: 1.7;
+    color: var(--stone);
+  }
+
+  .annotation strong {
+    display: block;
+    font-size: 9px;
+    font-weight: 500;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--terracotta);
+    margin-bottom: 6px;
+  }
+
+  /* ── FOOTER BAR ── */
+  .footer-bar {
+    background: var(--ink);
+    color: var(--cream);
+    padding: 32px 80px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  .footer-logo {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 18px;
+    font-weight: 300;
+    letter-spacing: 0.3em;
+    text-transform: uppercase;
+  }
+
+  .footer-credit {
+    font-size: 10px;
+    font-weight: 400;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: rgba(245,240,232,0.45);
+  }
+
+  /* ── SAMPLE HEADER ── */
+  .sample-header {
+    background: var(--cream);
+    border-bottom: 1px solid rgba(28,26,23,0.1);
+    padding: 20px 48px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+
+  .sample-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    background: var(--terracotta);
+    color: white;
+    padding: 8px 18px;
+    font-size: 9px;
+    font-weight: 500;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+  }
+
+  .sample-title {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 16px;
+    font-weight: 400;
+    font-style: italic;
+    color: var(--stone);
+  }
+
+  .sample-by {
+    font-size: 10px;
+    font-weight: 400;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--stone);
+  }
+
+  /* ── ANIMATIONS ── */
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(24px); }
+    to   { opacity: 1; transform: translateY(0); }
+  }
+
+  /* ── COPY NOTES SECTION ── */
+  .copy-notes {
+    padding: 80px;
+    background: #F0EBE1;
+    border-top: 1px solid rgba(28,26,23,0.08);
+  }
+
+  .copy-notes-header {
+    font-size: 10px;
+    font-weight: 500;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    color: var(--terracotta);
+    margin-bottom: 40px;
+  }
+
+  .copy-notes-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 48px;
+  }
+
+  .copy-note-item h4 {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 20px;
+    font-weight: 400;
+    margin-bottom: 12px;
+    color: var(--ink);
+  }
+
+  .copy-note-item p {
+    font-size: 13px;
+    line-height: 1.85;
+    color: var(--stone);
+  }
+
+  @media (max-width: 900px) {
+    nav { padding: 20px 24px; }
+    .hero { grid-template-columns: 1fr; }
+    .hero-image-side { height: 50vw; }
+    .hero-content { padding: 48px 32px; }
+    .brand-statement { grid-template-columns: 1fr; padding: 80px 32px; gap: 24px; }
+    .philosophy-strip { flex-direction: column; padding: 48px 32px; gap: 40px; }
+    .philosophy-divider { display: none; }
+    .collection-intro { padding: 80px 32px 48px; }
+    .collection-grid { grid-template-columns: 1fr 1fr; margin: 0 24px; }
+    .email-capture { grid-template-columns: 1fr; padding: 64px 32px; }
+    .copy-notes { padding: 64px 32px; }
+    .copy-notes-grid { grid-template-columns: 1fr; gap: 32px; }
+    .footer-bar { padding: 24px 32px; }
+    .sample-header { flex-direction: column; gap: 12px; align-items: flex-start; padding: 16px 24px; }
+    .annotation { display: none; }
+  }
+
+  @media (max-width: 640px) {
+    body {
+      letter-spacing: 0.01em;
+    }
+
+    .sample-header {
+      align-items: center;
+      gap: 10px;
+      padding: 16px 20px;
+      text-align: center;
+    }
+
+    .sample-badge {
+      padding: 8px 14px;
+      letter-spacing: 0.16em;
+    }
+
+    .sample-title {
+      font-size: 15px;
+      line-height: 1.35;
+    }
+
+    .sample-by {
+      line-height: 1.5;
+    }
+
+    .label-bar {
+      padding: 9px 18px;
+      font-size: 9px;
+      line-height: 1.6;
+      letter-spacing: 0.14em;
+    }
+
+    nav {
+      flex-wrap: wrap;
+      gap: 12px;
+      padding: 16px 20px 14px;
+    }
+
+    .nav-logo {
+      font-size: 20px;
+      letter-spacing: 0.22em;
+      margin-right: auto;
+    }
+
+    .nav-actions {
+      gap: 14px;
+      flex-shrink: 0;
+    }
+
+    .nav-action {
+      font-size: 10px;
+      letter-spacing: 0.11em;
+      white-space: nowrap;
+    }
+
+    .nav-links {
+      order: 3;
+      width: calc(100% + 40px);
+      margin: 2px -20px 0;
+      padding: 10px 20px 2px;
+      overflow-x: auto;
+      justify-content: flex-start;
+      gap: 14px;
+      border-top: 1px solid rgba(28,26,23,0.08);
+      scrollbar-width: none;
+      -webkit-overflow-scrolling: touch;
+    }
+
+    .nav-links::-webkit-scrollbar {
+      display: none;
+    }
+
+    .nav-links a {
+      font-size: 10px;
+      letter-spacing: 0.11em;
+      white-space: nowrap;
+    }
+
+    .hero {
+      min-height: auto;
+    }
+
+    .hero-image-side {
+      height: clamp(230px, 66vw, 310px);
+    }
+
+    .hero-image-placeholder {
+      padding: 24px 22px;
+    }
+
+    .hero-image-caption {
+      line-height: 1.5;
+    }
+
+    .hero-content {
+      padding: 40px 22px 46px;
+    }
+
+    .hero-ornament {
+      display: none;
+    }
+
+    .hero-eyebrow {
+      margin-bottom: 18px;
+      letter-spacing: 0.18em;
+    }
+
+    .hero-headline {
+      font-size: clamp(38px, 11vw, 48px);
+      line-height: 1.08;
+      margin-bottom: 22px;
+      text-wrap: balance;
+    }
+
+    .hero-headline br,
+    .collection-intro-headline br,
+    .email-capture-text h2 br {
+      display: none;
+    }
+
+    .hero-body {
+      max-width: none;
+      margin-bottom: 30px;
+      font-size: 14px;
+      line-height: 1.75;
+    }
+
+    .hero-actions {
+      flex-direction: column;
+      align-items: stretch;
+      gap: 16px;
+    }
+
+    .btn-primary {
+      width: 100%;
+      padding: 14px 18px;
+      text-align: center;
+      letter-spacing: 0.14em;
+      line-height: 1.4;
+    }
+
+    .btn-ghost {
+      align-self: center;
+      line-height: 1.4;
+      text-align: center;
+    }
+
+    .brand-statement {
+      padding: 62px 22px;
+      gap: 20px;
+    }
+
+    .brand-statement-label,
+    .collection-intro-eyebrow,
+    .copy-notes-header {
+      letter-spacing: 0.18em;
+      line-height: 1.6;
+    }
+
+    .brand-statement-text {
+      font-size: clamp(29px, 9vw, 36px);
+      line-height: 1.32;
+      text-wrap: balance;
+    }
+
+    .brand-statement-sub {
+      margin-top: 24px;
+      font-size: 13.5px;
+      line-height: 1.8;
+    }
+
+    .philosophy-strip {
+      padding: 44px 22px;
+      gap: 34px;
+    }
+
+    .philosophy-number {
+      font-size: 42px;
+      margin-bottom: 12px;
+    }
+
+    .philosophy-headline {
+      font-size: 21px;
+      line-height: 1.25;
+    }
+
+    .collection-intro {
+      padding: 64px 22px 42px;
+    }
+
+    .collection-intro-headline {
+      font-size: clamp(32px, 9.5vw, 42px);
+      line-height: 1.1;
+      text-wrap: balance;
+    }
+
+    .collection-intro-body {
+      margin-bottom: 34px;
+      font-size: 13.5px;
+      line-height: 1.8;
+    }
+
+    .collection-grid {
+      grid-template-columns: 1fr;
+      gap: 1px;
+      margin: 0;
+    }
+
+    .grid-item {
+      aspect-ratio: 4/5;
+    }
+
+    .grid-item-label {
+      padding: 46px 22px 22px;
+    }
+
+    .email-capture {
+      padding: 56px 22px;
+      gap: 34px;
+    }
+
+    .email-capture-text h2 {
+      font-size: clamp(32px, 9.5vw, 42px);
+      line-height: 1.12;
+      text-wrap: balance;
+    }
+
+    .email-capture-text p {
+      max-width: none;
+      font-size: 13.5px;
+      line-height: 1.8;
+    }
+
+    .email-form input {
+      font-size: 16px;
+      letter-spacing: 0.03em;
+    }
+
+    .email-form-note {
+      font-size: 10.5px;
+    }
+
+    .copy-notes {
+      padding: 54px 22px;
+    }
+
+    .copy-notes-grid {
+      gap: 28px;
+    }
+
+    .copy-note-item h4 {
+      font-size: 22px;
+      margin-bottom: 8px;
+    }
+
+    .copy-note-item p {
+      font-size: 13px;
+      line-height: 1.78;
+    }
+
+    .footer-bar {
+      flex-direction: column;
+      align-items: flex-start;
+      gap: 12px;
+      padding: 26px 22px;
+    }
+
+    .footer-logo {
+      font-size: 17px;
+      letter-spacing: 0.24em;
+    }
+
+    .footer-credit {
+      line-height: 1.7;
+      overflow-wrap: anywhere;
+    }
+  }
+
+  @media (max-width: 380px) {
+    .nav-logo {
+      font-size: 19px;
+      letter-spacing: 0.2em;
+    }
+
+    .nav-actions {
+      width: 100%;
+      justify-content: space-between;
+    }
+
+    .hero-headline {
+      font-size: 37px;
+    }
+  }
+</style>
+</head>
+<body>
+
+<!-- Sample Header Banner -->
+<div class="sample-header">
+  <span class="sample-badge">✦ Copy Sample</span>
+  <span class="sample-title">Homepage Rewrite for LESET</span>
+  <span class="sample-by">By The Silk Pen</span>
+</div>
+
+<!-- Announcement Bar -->
+<div class="label-bar">
+  Introducing The Summer Collection &nbsp;·&nbsp; Free US Shipping Over $100 &nbsp;·&nbsp; Now Shipping Worldwide
+</div>
+
+<!-- Nav -->
+<nav>
+  <a href="#" class="nav-logo">LESET</a>
+  <ul class="nav-links">
+    <li><a href="#">New</a></li>
+    <li><a href="#">Clothing</a></li>
+    <li><a href="#">Classics</a></li>
+    <li><a href="#">Le Sets</a></li>
+    <li><a href="#">Edits</a></li>
+  </ul>
+  <div class="nav-actions">
+    <a href="#" class="nav-action">Search</a>
+    <a href="#" class="nav-action">Bag (0)</a>
+  </div>
+</nav>
+
+<!-- HERO SECTION -->
+<section class="hero">
+  <div class="hero-image-side">
+    <div class="hero-image-placeholder">
+      <span class="hero-image-caption">The Summer Collection, 2026</span>
+    </div>
+  </div>
+
+  <div class="hero-content">
+    <div class="hero-ornament">The Summer Collection</div>
+
+    <p class="hero-eyebrow">New Arrivals</p>
+
+    <h1 class="hero-headline">
+      Dressed for<br>
+      wherever<br>
+      the day<br>
+      <em>takes you.</em>
+    </h1>
+
+    <p class="hero-body">
+      Not quite casual. Not quite formal. Exactly right.
+      LESET was built for the in-between. The coffee that turns into lunch,
+      the office that flows into dinner, the morning you planned
+      and the evening you didn't see coming.
+    </p>
+
+    <div class="hero-actions">
+      <a href="#" class="btn-primary">Shop The Collection</a>
+      <a href="#" class="btn-ghost">Discover The Classics</a>
+    </div>
+  </div>
+</section>
+
+<!-- BRAND STATEMENT -->
+<section class="brand-statement">
+  <div>
+    <p class="brand-statement-label">Our Philosophy</p>
+  </div>
+  <div class="annotation-wrapper">
+    <div class="brand-statement-text">
+      There's a version of getting dressed that doesn't cost you anything:
+      not your time, not your comfort, not your sense of <em>self.</em>
+      <br><br>
+      That's what Lili set out to make.
+    </div>
+    <p class="brand-statement-sub">
+      In 2019, she saw the gap that nobody had filled. The space between the sweater you live in at home 
+      and the blazer you put on to be taken seriously. LESET was born in that grey space. 
+      Five years later, it's become the category. What was once hard to explain is now 
+      how the women who wear us introduce themselves: "I'm a LESET person."
+    </p>
+  </div>
+</section>
+
+<!-- PHILOSOPHY STRIP -->
+<section class="philosophy-strip">
+  <div class="philosophy-item">
+    <div class="philosophy-number">01</div>
+    <div class="philosophy-headline">Built on the Body, Not the Rack</div>
+    <p class="philosophy-body">
+      Every set is designed to move with you, not around you. 
+      The silhouette is intentional. The fabric earns its place. 
+      Nothing is there to impress anyone but you.
+    </p>
+  </div>
+
+  <div class="philosophy-divider"></div>
+
+  <div class="philosophy-item">
+    <div class="philosophy-number">02</div>
+    <div class="philosophy-headline">The Uniform Reimagined</div>
+    <p class="philosophy-body">
+      Getting dressed shouldn't feel like a negotiation. 
+      LESET gives you a starting point that's already considered
+      so you can spend your energy on everything else.
+    </p>
+  </div>
+
+  <div class="philosophy-divider"></div>
+
+  <div class="philosophy-item">
+    <div class="philosophy-number">03</div>
+    <div class="philosophy-headline">Worn, Not Saved</div>
+    <p class="philosophy-body">
+      Nothing here is precious. These are the pieces you reach for on repeat:
+      on the plane, at the table, on the Tuesday when nothing else feels right 
+      and this does.
+    </p>
+  </div>
+</section>
+
+<!-- COLLECTION INTRO -->
+<section class="collection-intro">
+  <p class="collection-intro-eyebrow">The Classics</p>
+  <h2 class="collection-intro-headline">
+    Pieces that don't ask you to<br>
+    think twice. <em>Ever.</em>
+  </h2>
+  <p class="collection-intro-body">
+    Our bestselling sets (The Margo, The Pointelle, The Laura) 
+    keep coming back because they were never meant to leave. 
+    Offered in core and seasonal colours. Designed to mix. Built to stay.
+  </p>
+  <a href="#" class="btn-primary">Shop The Classics</a>
+</section>
+
+<!-- COLLECTION GRID -->
+<div class="collection-grid">
+  <div class="grid-item">
+    <div class="grid-item-bg grid-item-bg-1"></div>
+    <div class="grid-item-label">
+      <div class="grid-item-name">The Margo Set</div>
+      <div class="grid-item-sub">Cotton Essentials</div>
+    </div>
+  </div>
+  <div class="grid-item">
+    <div class="grid-item-bg grid-item-bg-2"></div>
+    <div class="grid-item-label">
+      <div class="grid-item-name">The Pointelle Set</div>
+      <div class="grid-item-sub">Soft & Considered</div>
+    </div>
+  </div>
+  <div class="grid-item">
+    <div class="grid-item-bg grid-item-bg-3"></div>
+    <div class="grid-item-label">
+      <div class="grid-item-name">The Yoko Set</div>
+      <div class="grid-item-sub">Summer Collection</div>
+    </div>
+  </div>
+</div>
+
+<!-- EMAIL CAPTURE -->
+<section class="email-capture">
+  <div class="email-capture-text">
+    <h2>
+      Be the first to know<br>
+      what's <em>coming next.</em>
+    </h2>
+    <p>
+      New collections drop monthly. Sign up and you will hear about them first,
+      shop them first, and never miss the pieces that sell out before most people
+      even know they exist.
+    </p>
+  </div>
+  <div>
+    <div class="email-form">
+      <input type="email" placeholder="Your email address">
+      <a href="#" class="btn-primary" style="text-align:center;">Get Early Access</a>
+      <p class="email-form-note">By signing up you agree to receive emails from LESET. 
+      Unsubscribe anytime. We won't flood your inbox. Just the good stuff, when it matters.</p>
+    </div>
+  </div>
+</section>
+
+<!-- COPY NOTES -->
+<section class="copy-notes">
+  <p class="copy-notes-header">✦ Copywriter's Notes: What Changed & Why</p>
+  <div class="copy-notes-grid">
+    <div class="copy-note-item">
+      <h4>The Hero</h4>
+      <p>
+        The original hero was purely visual. Beautiful image, "Shop Now," nothing else.
+        A first-time visitor had no idea what LESET stood for before being asked to buy.
+        The rewrite names the woman's actual life (coffee into lunch, office into evening)
+        so she feels understood before she feels sold to. That order matters.
+      </p>
+    </div>
+    <div class="copy-note-item">
+      <h4>The Brand Statement</h4>
+      <p>
+        The origin story lives on the About page where most visitors never reach it. 
+        This version brings it forward to the homepage, framed around Lili personally. 
+        "The brand that invented a category" is compelling. "That's what Lili set out to make" is human. 
+        Founder energy is the most underused conversion asset on the LESET site right now.
+      </p>
+    </div>
+    <div class="copy-note-item">
+      <h4>The Email Capture</h4>
+      <p>
+        "Sign up and get 10% off" is the same thing every other brand says. 
+        The rewrite removes the discount entirely and replaces it with access and scarcity.
+        LESET's drops sell out. That is a stronger offer than 10% off. 
+        It respects the subscriber's intelligence and makes signing up feel like an advantage, not a transaction.
+      </p>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER BAR -->
+<div class="footer-bar">
+  <span class="footer-logo">LESET</span>
+  <span class="footer-credit">Copy sample prepared by The Silk Pen · hello@thesilkpen.in</span>
+</div>
+
+</body>
+</html>
